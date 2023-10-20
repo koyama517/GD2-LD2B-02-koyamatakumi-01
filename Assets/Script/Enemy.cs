@@ -3,36 +3,37 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
+
     public float moveSpeed = 5f;
 
     Rigidbody2D rb;
 
-    private Vector2 moveDirection = new Vector2(1,0);
+    private Vector2 moveDirection = new Vector2(1, 0);
 
-    public float playerAngle;
+    public float angle;
     public bool isCollision;
 
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
     }
 
+    // Update is called once per frame
     void Update()
     {
-
-        if(playerAngle >= 360)
+        if(angle >= 360)
         {
-            playerAngle = 0;
+            angle = 0;
         }
 
-        Vector2 playerVector = Quaternion.Euler(0, 0, playerAngle) * Vector2.right;
+        Vector2 enemyVector = Quaternion.Euler(0, 0, angle) * Vector2.right;
 
-        // Rigidbody2Dに移動ベクトルを適用
-        rb.velocity = playerVector * moveSpeed;
+        rb.velocity = enemyVector * moveSpeed;
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -40,19 +41,21 @@ public class Player : MonoBehaviour
         {
             if (!isCollision)
             {
-                playerAngle += 90;
+                angle += 90;
                 isCollision = true;
             }
         }
 
-        if (collision.gameObject.tag == "Enemy")
+        if(collision.gameObject.tag == "Enemy")
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        isCollision = false;   
+        isCollision = false;
     }
+
 }
