@@ -102,7 +102,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
-  m_Color: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+  m_Color: {r: 0.2784314, g: 0.9960785, b: 0.68235296, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -124,6 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1ee34d9d0aa0194b9fd2af787496d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isRide: 0
   isActive: 0
   turnPointPrefab: {fileID: 0}
+  player: {fileID: 0}
+  peaPoint: {fileID: 0}
+  isSide: 0

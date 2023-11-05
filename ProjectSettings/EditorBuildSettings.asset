@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Title.unity
+    guid: f32b5bde9bd69ea4dae5bee6b28875d7
+  - enabled: 1
+    path: Assets/Scenes/StageSelect.unity
+    guid: 2384ef3db38f70445a7f579fff7ca6e8
+  - enabled: 1
     path: Assets/Scenes/proto.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/protoStage.unity
+    guid: f8b800a28830f15459e815f42fb5e2d5
   m_configObjects: {}

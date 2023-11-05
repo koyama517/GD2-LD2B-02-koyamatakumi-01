@@ -7,6 +7,8 @@ public class ActiveRail : MonoBehaviour
 
     SpriteRenderer sprite;
 
+    public GameObject activePoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +20,6 @@ public class ActiveRail : MonoBehaviour
     void Update()
     {
         ActivePoint turnPoint;
-        GameObject activePoint = GameObject.Find("ActivePoint");
         turnPoint = activePoint.GetComponent<ActivePoint>();
 
         if (turnPoint.isActive){

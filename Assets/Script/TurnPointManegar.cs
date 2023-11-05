@@ -18,7 +18,7 @@ public class TurnPointManegar : MonoBehaviour
     void Update()
     {
 
-        ActivePoint turnPoint;
+       /* ActivePoint turnPoint;
         GameObject activePoint = GameObject.Find("ActivePoint");
         turnPoint = activePoint.GetComponent<ActivePoint>();
         if (turnPoint != null)
@@ -62,7 +62,7 @@ public class TurnPointManegar : MonoBehaviour
             }
             peaPoint.isActive = isActive;
 
-        }
+        }*/
 
 
 

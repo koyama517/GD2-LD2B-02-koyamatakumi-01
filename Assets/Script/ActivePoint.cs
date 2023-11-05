@@ -1,12 +1,10 @@
-using JetBrains.Rider.Unity.Editor;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class ActivePoint : MonoBehaviour
 {
-    public bool isRide = false;
+    bool isRide = false;
     public bool isActive;
 
     BoxCollider2D col;
@@ -17,10 +15,12 @@ public class ActivePoint : MonoBehaviour
     SpriteRenderer sprite;
 
     public GameObject player;
+    public GameObject peaPoint;
 
     private float error = 0.1f;
+    private float angle;
 
-
+    public bool isSide;
 
     // Start is called before the first frame update
     void Start()
@@ -33,54 +33,107 @@ public class ActivePoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isActive)
+        SceneManegar mane;
+        GameObject manegar = GameObject.Find("Main Camera");
+        mane = manegar.GetComponent<SceneManegar>();
+        if (mane != null)
         {
-            sprite.color = new Color(0.5f, 1f, 0.7f);
-            if (turnPoint == null)
+            if (mane.isStart)
             {
-                turnPoint = Instantiate(turnPointPrefab, transform);
+                if (isActive)
+                {
+                    sprite.color = new Color(0.5f, 1f, 0.7f);
+                    if (turnPoint == null)
+                    {
+                        turnPoint = Instantiate(turnPointPrefab, transform);
+                    }
+                }
+                else
+                {
+                    sprite.color = new Color(0.6f, 0.6f, 0.6f);
+                    if (turnPoint != null)
+                    {
+                        Destroy(turnPoint);
+                    }
+
+                }
+
+                CheckRide();
+                if (isRide)
+                {
+                    Active();
+                    Rotate();
+                }
+                else
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
+                }
             }
         }
-        else
-        {
-            sprite.color = new Color(0.6f, 0.6f, 0.6f);
-            if (turnPoint != null)
-            {
-                Destroy(turnPoint);
-            }
+    }
 
-        }
-
-        CheckRide();
-
+    private void Rotate()
+    {
+        transform.Rotate(0, 0, 1);
     }
 
     private void CheckRide()
     {
-        if(gameObject.transform.position.y + error >= player.transform.position.y &&
-            gameObject.transform.position.y - error <= player.transform.position.y)
+        
+       
+
+
+        if (player != null)
         {
-            isRide = true;
-        }
-        else
-        {
-            isRide = false;
+            Player playerSctipt = player.GetComponent<Player>();
+            if (isSide && (playerSctipt.angle == 0 || playerSctipt.angle == 180))
+            {
+                if (gameObject.transform.position.y + error >= player.transform.position.y &&
+                    gameObject.transform.position.y - error <= player.transform.position.y)
+                {
+                    isRide = true;
+                }
+                else
+                {
+                    isRide = false;
+                }
+            }
+            else if (!isSide && (playerSctipt.angle == 90 || playerSctipt.angle == 270))
+            {
+                if (gameObject.transform.position.x + error >= player.transform.position.x &&
+                gameObject.transform.position.x - error <= player.transform.position.x)
+                {
+                    isRide = true;
+                }
+                else
+                {
+                    isRide = false;
+                }
+            }
+            
+
+
         }
     }
 
-    /*private void OnTriggerEnter2D(Collider2D collision)
+    private void Active()
     {
-        if (collision.gameObject.tag == "Player")
+        PeaPoint peaPointScript;
+        peaPointScript = peaPoint.GetComponent<PeaPoint>();
+        if (peaPoint != null)
         {
-            isRide = true;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (!isActive)
+                {
+                    isActive = true;
+                }
+                else
+                {
+                    isActive = false;
+                }
+                peaPointScript.isActive = isActive;
+            }
         }
     }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            isRide = false;
-        }
-    }*/
 }

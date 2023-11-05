@@ -4,11 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - TurnPoint
-  - DefPoint
   - Point
   - Enemy
   - '!Point'
+  - PPoint
+  - RePoint
   layers:
   - Default
   - TransparentFX

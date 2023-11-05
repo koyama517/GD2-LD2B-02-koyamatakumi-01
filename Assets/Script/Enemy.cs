@@ -13,42 +13,148 @@ public class Enemy : MonoBehaviour
     private Vector2 moveDirection = new Vector2(1, 0);
 
     public float angle;
-    public bool isCollision;
+    public float angleNum;
+
+    public bool isRevers;
+    bool isTurn;
+    bool isCollision;
+
+    public bool isRideActiveRail;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        //isRevers = false;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(angle >= 360)
+        SceneManegar mane;
+        GameObject manegar = GameObject.Find("Main Camera");
+        mane = manegar.GetComponent<SceneManegar>();
+        if (mane != null)
         {
-            angle = 0;
+            if (mane.isStart)
+            {
+                if (isTurn && isCollision)
+                {
+                    if (angle + angleNum >= 360)
+                    {
+                        angleNum -= 360;
+                        angle += angleNum;
+                    }
+                    else
+                    {
+                        angle += angleNum;
+                    }
+                    isTurn = false;
+                }
+
+                Vector2 enemyVector = Quaternion.Euler(0, 0, angle) * Vector2.right;
+
+                rb.velocity = enemyVector * moveSpeed;
+            }
         }
-
-        Vector2 enemyVector = Quaternion.Euler(0, 0, angle) * Vector2.right;
-
-        rb.velocity = enemyVector * moveSpeed;
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Point")
         {
             if (!isCollision)
             {
-                angle += 90;
+                if (!isRevers)
+                {
+                    angleNum = 90;
+                }
+                else
+                {
+                    angleNum = 270;
+                }
+                isTurn = true;
                 isCollision = true;
+                if (isRideActiveRail)
+                {
+                    isRideActiveRail = false;
+                }
             }
         }
 
-        if(collision.gameObject.tag == "Enemy")
+
+        if (collision.gameObject.tag == "RePoint")
+        {
+            if (!isCollision)
+            {
+                if (!isRevers)
+                {
+                    angleNum = 270;
+                }
+                else
+                {
+                    angleNum = 90;
+                }
+                isTurn = true;
+                isCollision = true;
+                if (isRideActiveRail)
+                {
+                    isRideActiveRail = false;
+                }
+            }
+        }
+
+        if (collision.gameObject.tag == "PPoint")
+        {
+            if (!isCollision)
+            {
+                if (!isRevers)
+                {
+                    isRevers = true;
+                }
+                else
+                {
+                    isRevers = false;
+                }
+                angleNum = 180;
+                isTurn = true;
+                isCollision = true;
+                if (isRideActiveRail)
+                {
+                    isRideActiveRail = false;
+                }
+            }
+        }
+
+        if (collision.gameObject.tag == "Enemy")
         {
             Destroy(this.gameObject);
+        }
+        
+        if (collision.gameObject.tag == "!Point")
+        {
+            if (!isRideActiveRail && isCollision)
+            {
+                isRideActiveRail = true;
+            }
+
+            if (isRideActiveRail)
+            {
+                if (!isCollision)
+                {
+                    if (!isRevers)
+                    {
+                        angleNum = 270;
+                    }
+                    else
+                    {
+                        angleNum = 90;
+                    }
+                    isTurn = true;
+                    isCollision = true;
+                    isRideActiveRail = false;
+                }
+            }
         }
 
     }

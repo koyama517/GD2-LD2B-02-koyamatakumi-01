@@ -11,7 +11,7 @@ public class Rail : MonoBehaviour
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
-        sprite.color = new Color(0.8f, 1f, 1f);
+        sprite.color = new Color(0.3921569f, 0.3921569f, 0.3921569f);
     }
 
     // Update is called once per frame
@@ -32,7 +32,7 @@ public class Rail : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            sprite.color = new Color(0.8f, 1f, 1f);
+            sprite.color = new Color(0.3921569f, 0.3921569f, 0.3921569f);
         }
     }
 }
