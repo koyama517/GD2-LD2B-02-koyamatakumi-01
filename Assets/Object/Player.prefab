@@ -150,3 +150,4 @@ MonoBehaviour:
   angle: 0
   angleNum: 0
   isRevers: 0
+  ParticlePre: {fileID: 4695561277090895848, guid: d5ec0e9372f250e4f8ccff85a9ef6db9, type: 3}

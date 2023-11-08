@@ -1,14 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class moji : MonoBehaviour
+public class Arrow : MonoBehaviour
 {
-    // Start is called before the first frame update
-
-    public float blinkSpeed = 2.0f; // 点滅の速度
+    public float blinkSpeed = 1.0f; // 点滅の速度
 
     private SpriteRenderer spriteRenderer;
     private Color originalColor;

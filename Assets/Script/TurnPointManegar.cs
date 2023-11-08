@@ -18,7 +18,7 @@ public class TurnPointManegar : MonoBehaviour
     void Update()
     {
 
-       /* ActivePoint turnPoint;
+       /*Ga ActivePoint turnPoint;
         GameObject activePoint = GameObject.Find("ActivePoint");
         turnPoint = activePoint.GetComponent<ActivePoint>();
         if (turnPoint != null)

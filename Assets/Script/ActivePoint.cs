@@ -42,7 +42,7 @@ public class ActivePoint : MonoBehaviour
             {
                 if (isActive)
                 {
-                    sprite.color = new Color(0.5f, 1f, 0.7f);
+                    sprite.color = new Color(1, 1f, 1);
                     if (turnPoint == null)
                     {
                         turnPoint = Instantiate(turnPointPrefab, transform);
@@ -85,8 +85,7 @@ public class ActivePoint : MonoBehaviour
 
         if (player != null)
         {
-            Player playerSctipt = player.GetComponent<Player>();
-            if (isSide && (playerSctipt.angle == 0 || playerSctipt.angle == 180))
+            if (isSide)
             {
                 if (gameObject.transform.position.y + error >= player.transform.position.y &&
                     gameObject.transform.position.y - error <= player.transform.position.y)
@@ -98,7 +97,7 @@ public class ActivePoint : MonoBehaviour
                     isRide = false;
                 }
             }
-            else if (!isSide && (playerSctipt.angle == 90 || playerSctipt.angle == 270))
+            else
             {
                 if (gameObject.transform.position.x + error >= player.transform.position.x &&
                 gameObject.transform.position.x - error <= player.transform.position.x)
@@ -110,9 +109,6 @@ public class ActivePoint : MonoBehaviour
                     isRide = false;
                 }
             }
-            
-
-
         }
     }
 

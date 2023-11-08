@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     public bool isRevers;
     bool isTurn;
     bool isCollision;
-
+    public GameObject ParticlePre;
 
     private void Start()
     {
@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
         //isRevers = false;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         SceneManegar mane;
         GameObject manegar = GameObject.Find("Main Camera");
@@ -51,6 +51,10 @@ public class Player : MonoBehaviour
 
                 // Rigidbody2Dに移動ベクトルを適用
                 rb.velocity = playerVector * moveSpeed;
+            }
+            else
+            {
+                rb.velocity = Vector2.zero;
             }
         }
     }
@@ -111,6 +115,13 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag == "Enemy")
         {
+            for (int i = 0; i < 10; i++)
+            {
+                Instantiate(
+                      ParticlePre,
+                      transform.position,
+                      Quaternion.identity);
+            }
             Destroy(gameObject);
         }
     }

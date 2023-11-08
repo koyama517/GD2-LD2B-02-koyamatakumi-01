@@ -21,13 +21,16 @@ public class ActiveRail : MonoBehaviour
     {
         ActivePoint turnPoint;
         turnPoint = activePoint.GetComponent<ActivePoint>();
-
-        if (turnPoint.isActive){
-            sprite.color = new Color(0.45f, 1, 0.7f);
-        }
-        else
+        if (turnPoint != null)
         {
-            sprite.color = new Color(0.1f, 0.3f, 0.2f);
+            if (turnPoint.isActive)
+            {
+                sprite.color = new Color(0.45f, 1, 0.7f);
+            }
+            else
+            {
+                sprite.color = new Color(0.1f, 0.3f, 0.2f);
+            }
         }
     }
 }

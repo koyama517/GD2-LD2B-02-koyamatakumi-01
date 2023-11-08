@@ -41,7 +41,7 @@ public class PeaPoint : MonoBehaviour
             {
                 if (isActive)
                 {
-                    sprite.color = new Color(0.5f, 1f, 0.7f);
+                    sprite.color = new Color(1, 1f, 1);
                     if (turnPoint == null)
                     {
                         turnPoint = Instantiate(turnPointPrefab, transform);

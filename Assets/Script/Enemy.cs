@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         SceneManegar mane;
         GameObject manegar = GameObject.Find("Main Camera");
@@ -56,6 +56,10 @@ public class Enemy : MonoBehaviour
                 Vector2 enemyVector = Quaternion.Euler(0, 0, angle) * Vector2.right;
 
                 rb.velocity = enemyVector * moveSpeed;
+            }
+            else
+            {
+                rb.velocity = Vector2.zero;
             }
         }
     }
